@@ -19,13 +19,13 @@ docker-compose run --rm freqtrade download-data --user-data-dir /freqtrade/user_
 # Perform backtesting strategies on historical data
 Run the command below
 ```
-docker-compose run --rm freqtrade backtesting --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101-20211231 --datadir /freqtrade/user_data/data/binance --strategy SampleStrategy
+docker-compose run --rm freqtrade backtesting --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20220301-20220401 --datadir /freqtrade/user_data/data/binance --strategy RSI_Bollinger_Bands_5m
 ```
 
 # Tune parameters from config and strategy files
 Run the command below
 ```
-docker-compose run --rm freqtrade hyperopt --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101-20211031 --datadir /freqtrade/user_data/data/binance/ --strategy SampleStrategy --hyperopt-loss SharpeHyperOptLoss --job-workers -1 --epochs 100
+docker-compose run --rm freqtrade hyperopt --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101-20211231 --datadir /freqtrade/user_data/data/binance/ --strategy RSI_Bollinger_Bands_1d --dry-run-wallet 100 --hyperopt-loss ShortTradeDurHyperOptLoss --job-workers -1 --epochs 50
 ```
 # Run service in dry-run mode
 
