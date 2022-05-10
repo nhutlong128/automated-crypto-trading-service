@@ -14,18 +14,31 @@ docker-compose run --rm freqtrade download-data --user-data-dir /freqtrade/user_
 ```
 Example
 ```
-docker-compose run --rm freqtrade download-data --user-data-dir /freqtrade/user_data --datadir /freqtrade/user_data/data/binance/ --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101- --exchange binance --pairs-file /freqtrade/user_data/data/pair_list.json -t 1m
+docker-compose run --rm freqtrade download-data --user-data-dir /freqtrade/user_data --datadir /freqtrade/user_data/data/binance/ --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20200101- --exchange binance --pairs-file /freqtrade/user_data/data/tradable_binance_pair_list.json -t 1d
 ```
+
 # Perform backtesting strategies on historical data
 Run the command below
 ```
-docker-compose run --rm freqtrade backtesting --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20220301-20220401 --datadir /freqtrade/user_data/data/binance --strategy RSI_Bollinger_Bands_5m
+docker-compose run --rm freqtrade backtesting --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20220401-20220410 --datadir /freqtrade/user_data/data/binance --strategy NostalgiaForInfinityX
 ```
 
 # Tune parameters from config and strategy files
 Run the command below
 ```
-docker-compose run --rm freqtrade hyperopt --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101-20211231 --datadir /freqtrade/user_data/data/binance/ --strategy RSI_Bollinger_Bands_1d --dry-run-wallet 100 --hyperopt-loss ShortTradeDurHyperOptLoss --job-workers -1 --epochs 50
+docker-compose run --rm freqtrade hyperopt --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20210101-20211231 --datadir /freqtrade/user_data/data/binance/ --strategy RSI_Keltner_Channel --hyperopt-loss SharpeHyperOptLossDaily --job-workers -1 --epochs 100 --print-all
+```
+
+# Perform backtesting strategies on latest historical data
+Run the command below
+```
+docker-compose run --rm freqtrade backtesting --user-data-dir /freqtrade/user_data --config /freqtrade/user_data/configs/local-nhutlong128-baseline-config.json --timerange 20220101-20220401 --datadir /freqtrade/user_data/data/binance --strategy RSI_Keltner_Channel
+```
+
+# Plot indicator and buy sell behaviors
+Run the command below
+```
+docker-compose run --rm freqtrade plot-dataframe --strategy RSI_Bollinger_Bands_1d --export-filename /freqtrade/user_data/backtest_results/backtest-result-2022-04-12_06-14-40.json -p BTC/USDT
 ```
 # Run service in dry-run mode
 
