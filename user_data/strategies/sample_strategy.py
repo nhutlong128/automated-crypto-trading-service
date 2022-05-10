@@ -40,14 +40,19 @@ class SampleStrategy(IStrategy):
     # Minimal ROI designed for the strategy.
     # This attribute will be overridden if the config file contains "minimal_roi".
     minimal_roi = {
-        "60": 0.01,
-        "30": 0.02,
-        "0": 0.04
+        "0": 0.1,
+        "106": 0.08,
+        "337": 0.072,
+        "1015": 0
     }
 
     # Optimal stoploss designed for the strategy.
     # This attribute will be overridden if the config file contains "stoploss".
-    stoploss = -0.10
+    stoploss = -0.1
+
+    buy_params = {
+        "buy_rsi": 47,
+    }
 
     # Trailing stoploss
     trailing_stop = False
@@ -66,7 +71,7 @@ class SampleStrategy(IStrategy):
     process_only_new_candles = False
 
     # These values can be overridden in the "ask_strategy" section in the config.
-    use_sell_signal = True
+    use_sell_signal = False
     sell_profit_only = False
     ignore_roi_if_buy_signal = False
 

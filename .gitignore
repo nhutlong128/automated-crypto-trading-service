@@ -130,3 +130,11 @@ dmypy.json
 
 # Persistence stuff
 *.sqlite*
+
+# config stuff
+*.json
+
+# Hyperopt training file
+*.fthypt
+*.pkl
+*.lock
